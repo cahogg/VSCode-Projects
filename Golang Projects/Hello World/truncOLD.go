@@ -1,18 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-var Decimal float64
+var Decimal float32
+var Whole int
 
 func main() {
 
 	fmt.Println("Enter a float: ")
 	fmt.Scanln(&Decimal)
-
-	Decimal = math.Trunc(Decimal)
 
 	fmt.Printf("%.0f", Decimal)
 }
