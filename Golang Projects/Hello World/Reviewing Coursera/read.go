@@ -7,19 +7,18 @@ import (
 	"strings"
 )
 
-// Name struct represents a person's first and last name
 type Name struct {
 	Fname string
 	Lname string
 }
 
 func main() {
-	// Prompt the user for the name of the text file
+
 	fmt.Println("Enter the name of the text file:")
 	var fileName string
 	fmt.Scanln(&fileName)
 
-	// Open the file
+	// os.Open allows us to open a file.
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Println("Error opening file:", err)
@@ -27,10 +26,10 @@ func main() {
 	}
 	defer file.Close()
 
-	// Create a slice to hold the structs
+	//Slice for name holding
 	var names []Name
 
-	// Read lines from the file
+	//This reads the lines of the file.
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -46,13 +45,13 @@ func main() {
 		names = append(names, name)
 	}
 
-	// Check for any errors during scanning
+	// More error checking
 	if err := scanner.Err(); err != nil {
 		fmt.Println("Error reading file:", err)
 		return
 	}
 
-	// Print the names from the slice of structs
+	//This then just prints those names.
 	for _, name := range names {
 		fmt.Println("First Name:", name.Fname, "Last Name:", name.Lname)
 	}
